@@ -73,7 +73,12 @@ function deploy()
         # nb: presumes that these are the right ones! any changes to configuration needed
         # for this release will need to be applied (by hand, presumably) in advance
         # of relinking.
-        cp -r ~/backup/$1/config ${RUNDIR}
+        if [[ -d ~/backup/$1/config ]]
+        then
+            cp -r ~/backup/$1/config ${RUNDIR}
+        else
+            cp -r ${CONFIGDIR}/$1/config ${RUNDIR} 
+        fi
 
         cd ${RUNDIR}
     fi
